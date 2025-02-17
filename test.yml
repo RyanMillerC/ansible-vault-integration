@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  vars:
+    something: value
+  tasks:
+    - name: Print value from Vault
+      ansible.builtin.debug:
+        # msg: "Value from Vault: {{ 'something' }}"
+        msg: "{{ lookup('community.hashi_vault.vault_kv2_get', 'my-secret', url='http://localhost:8200') }}"
