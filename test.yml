@@ -1,5 +1,4 @@
-- hosts: localhost
-  connection: local
+- hosts: dns
   vars:
     ansible_hashi_vault_url: "http://vault.taco.moe"
     message: "{{ lookup('community.hashi_vault.vault_kv2_get', 'some-dir/my-secret')['secret']['message'] }}"
