@@ -1,6 +1,7 @@
 .PHONY: run
 run:
-	ansible-playbook test.yml
+	# Dev token regenerated on restart. Nothing to see here.
+	ansible-playbook test.yml -e ansible_hashi_vault_token=hvs.GAj7TE2TRKKzHxvsVDTtAzjO
 
 .PHONY: vault-up
 vault-up:

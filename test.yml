@@ -1,8 +1,8 @@
 - hosts: localhost
   connection: local
   vars:
-    ansible_hashi_vault_url: "http://localhost:8200"
-    message: "{{ lookup('community.hashi_vault.vault_kv2_get', 'my-secret')['secret']['key'] }}"
+    ansible_hashi_vault_url: "http://vault.taco.moe"
+    message: "{{ lookup('community.hashi_vault.vault_kv2_get', 'some-dir/my-secret')['secret']['message'] }}"
   tasks:
     - name: Print value from Vault
       ansible.builtin.debug:
