@@ -5,6 +5,7 @@ run:
 	ansible-playbook \
 		-e ansible_hashi_vault_url="https://vault.taco.moe" \
 		-e ansible_hashi_vault_token="hvs.GAj7TE2TRKKzHxvsVDTtAzjO" \
+		-i ./inventory \
 		test.yml
 
 
