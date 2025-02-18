@@ -1,4 +1,4 @@
-- hosts: dns
+- hosts: servers
   vars:
     message: "{{ lookup('community.hashi_vault.vault_kv2_get', 'some-dir/my-secret')['secret']['message'] }}"
   tasks:
