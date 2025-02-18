@@ -1,21 +1,21 @@
+# Run playbook from command line
 .PHONY: run
 run:
 	# Dev token regenerated on restart. Nothing to see here.
-	ansible-playbook test.yml -e ansible_hashi_vault_token=hvs.GAj7TE2TRKKzHxvsVDTtAzjO
+	ansible-playbook \
+		-e ansible_hashi_vault_url="https://vault.taco.moe" \
+		-e ansible_hashi_vault_token="hvs.GAj7TE2TRKKzHxvsVDTtAzjO" \
+		test.yml
 
+
+# Build Ansible Execution Environment image with community.hashi_vault
+# collection and dependencies installed.
 .PHONY: build-ee
 build-ee:
-	ansible-builder build --tag hashi_vault_ee
+	ansible-builder build --tag hashi_vault_ee --extra-build-cli-args "--platform linux/amd64"
 
-.PHONY: vault-up
-vault-up:
-	podman run \
-		--cap-add=IPC_LOCK \
-		-e 'VAULT_LOCAL_CONFIG={"storage": {"file": {"path": "/vault/file"}}, "listener": [{"tcp": { "address": "0.0.0.0:8200", "tls_disable": true}}], "default_lease_ttl": "168h", "max_lease_ttl": "720h", "ui": true}' \
-		-p 8200:8200 \
-		docker.io/hashicorp/vault \
-		server
 
+# Run vault in a container (for testing).
 .PHONY: vault-dev
 vault-dev:
 	podman run \
@@ -23,4 +23,4 @@ vault-dev:
 		--name=dev-vault \
 		--publish 8200:8200 \
 		--rm \
-		hashicorp/vault
+		docker.io/hashicorp/vault

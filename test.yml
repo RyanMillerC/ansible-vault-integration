@@ -1,9 +1,7 @@
 - hosts: dns
   vars:
-    ansible_hashi_vault_url: "http://vault.taco.moe"
     message: "{{ lookup('community.hashi_vault.vault_kv2_get', 'some-dir/my-secret')['secret']['message'] }}"
   tasks:
     - name: Print value from Vault
       ansible.builtin.debug:
-        # msg: "Value from Vault: {{ 'something' }}"
         msg: "The secret message is: '{{ message }}'"
