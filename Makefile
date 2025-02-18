@@ -3,6 +3,10 @@ run:
 	# Dev token regenerated on restart. Nothing to see here.
 	ansible-playbook test.yml -e ansible_hashi_vault_token=hvs.GAj7TE2TRKKzHxvsVDTtAzjO
 
+.PHONY: build-ee
+build-ee:
+	ansible-builder build --tag hashi_vault_ee
+
 .PHONY: vault-up
 vault-up:
 	podman run \
