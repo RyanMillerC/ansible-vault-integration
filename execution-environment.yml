@@ -4,6 +4,9 @@ images:
   base_image:
     name: quay.io/fedora/fedora:39
 
+# The only additions to the base execution environment example in the Ansible
+# docs are the "hvac" Python package and "community.hashi_vault" Ansible
+# collection.
 dependencies:
   ansible_core:
     package_pip: ansible-core
