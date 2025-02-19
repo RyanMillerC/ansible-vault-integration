@@ -1,7 +1,1 @@
-# What I did
-
-```bash
-export VAULT_ADDR='http://0.0.0.0:8200'
-vault login
-vault kv put -mount=secret my-secret key=value
-```
+# Yeah, this repo has secrets in it. Yeah, that isn't a good idea. The secrets are for a throw away lab environment. 🤷
