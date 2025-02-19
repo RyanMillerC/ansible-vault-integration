@@ -1,6 +1,19 @@
-# Run playbook from command line
-.PHONY: run
-run:
+# Run playbook using approle auth
+.PHONY: run-approle
+run-approle:
+	-rm "${HOME}/.vault_token"
+	# Approle token regenerated on restart. Nothing to see here.
+	ansible-playbook \
+		-e ansible_hashi_vault_auth_method="approle" \
+		-e ansible_hashi_vault_role_id="995e700d-e7b8-1124-cc69-3e2ba8286a69" \
+		-e ansible_hashi_vault_secret_id="e0dc3e6d-a98d-14ed-2eaf-7914bed63a3a" \
+		-e ansible_hashi_vault_url="https://vault.taco.moe" \
+		-i ./inventory \
+		test.yml
+
+# Run playbook using token auth
+.PHONY: run-token
+run-token:
 	# Dev token regenerated on restart. Nothing to see here.
 	ansible-playbook \
 		-e ansible_hashi_vault_url="https://vault.taco.moe" \
