@@ -1,2 +1,5 @@
 # Ignore ansible-builder context
 /context
+
+# Ignore environment variables
+.env
