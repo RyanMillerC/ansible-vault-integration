@@ -1,8 +1,8 @@
-# Run playbook using approle auth
+# Run playbook using approle auth (preferred)
 .PHONY: run-approle
 run-approle:
 	-rm "${HOME}/.vault_token"
-	# Approle token regenerated on restart. Nothing to see here.
+	# Yeah, this repo has secrets in it. Yeah, that isn't a good idea. The secrets are for a throw away lab environment. 🤷
 	ansible-playbook \
 		-e ansible_hashi_vault_auth_method="approle" \
 		-e ansible_hashi_vault_role_id="995e700d-e7b8-1124-cc69-3e2ba8286a69" \
@@ -11,10 +11,11 @@ run-approle:
 		-i ./inventory \
 		test.yml
 
-# Run playbook using token auth
+# Run playbook using token auth (for testing)
 .PHONY: run-token
 run-token:
-	# Dev token regenerated on restart. Nothing to see here.
+	-rm "${HOME}/.vault_token"
+	# Yeah, this repo has secrets in it. Yeah, that isn't a good idea. The secrets are for a throw away lab environment. 🤷
 	ansible-playbook \
 		-e ansible_hashi_vault_url="https://vault.taco.moe" \
 		-e ansible_hashi_vault_token="hvs.GAj7TE2TRKKzHxvsVDTtAzjO" \
