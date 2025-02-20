@@ -50,3 +50,13 @@ extra_vars:
 ```bash
 ansible-builder build --tag hashi_vault_ee --extra-build-cli-args "--platform linux/amd64"
 ```
+
+**NOTE -** *hvac* (2.3.0) package installs these dependencies:
+
+```
+certifi==2025.1.31
+charset-normalizer==3.4.1
+idna==3.10
+requests==2.32.3
+urllib3==2.3.0
+```
